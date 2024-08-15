@@ -66,7 +66,7 @@ function Search(props: { teamId: string }) {
             setData([])
         }
     }
-    
+
 
     return (
         <div className="w-full h-auto lg:h-full gap-2 flex flex-col overflow-scroll no-scrollbar">
@@ -83,17 +83,15 @@ function Search(props: { teamId: string }) {
 
             {/* LISTA */}
             <div className="flex flex-col gap-2 rounded-md lg:h-full overflow-scroll no-scrollbar">
-                {
-                    data && (data.map((player: PlayerType) => (
-                        <div  key={player.player_key} onClick={() => handleSelectPlayer(props.teamId, player)}>
-                            <Player
-                                player_key={player.player_key}
-                                player_image={player.player_image}
-                                player_name={player.player_name}
-                            />
-                        </div>
-                    )))
-                }
+                {data && (data.map((player: PlayerType, index: number) => (
+                    <div key={player.player_key || index} onClick={() => handleSelectPlayer(props.teamId, player)}>
+                        <Player
+                            player_key={player.player_key}
+                            player_image={player.player_image}
+                            player_name={player.player_name}
+                        />
+                    </div>
+                )))}
                 {data !== null && data?.length == 0 && (<p className='text-white'>No results...</p>)}
             </div>
 

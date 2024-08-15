@@ -7,7 +7,7 @@ import AppLogo from "@/components/AppLogo";
 import { teamsAtom } from "@/lib/store";
 import { useAtom } from "jotai";
 import Toast from "@/components/Toast";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 export default function Page() {
 
@@ -16,7 +16,7 @@ export default function Page() {
     // State del Toast
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState("")
-    const handleOpen = (message) => {
+    const handleOpen = (message: SetStateAction<string>) => {
         setShowToast(true);
         setToastMessage(message)
     };

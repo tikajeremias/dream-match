@@ -29,7 +29,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
     const handleSaveTeamName = () => {
         setInputDisabled(!inputDisabled)
-        setTeams((prevTeams) => {
+        setTeams((prevTeams: any) => {
             const updatedTeams = { ...prevTeams };
 
             // Actualizar el nombre del equipo especificado
@@ -40,15 +40,15 @@ export default function Page({ params }: { params: { id: string } }) {
     }
 
     const handleSelectPlayer = (teamId: string, newPlayer: any) => {
-        setTeams((prevTeams) => {
+        setTeams((prevTeams: any) => {
             // Clonar el estado anterior
             const updatedTeams = { ...prevTeams };
 
             // Actualizar el array de players para el equipo especificado
             const currentPlayers = updatedTeams[teamId].players || [];
-            const playerExists = currentPlayers.some(player => player.player_id === newPlayer.player_id);
+            const playerExists = currentPlayers.some((player: { player_id: any }) => player.player_id === newPlayer.player_id);
             if (playerExists) {
-                updatedTeams[teamId].players = currentPlayers.filter(player => player.player_id !== newPlayer.player_id);
+                updatedTeams[teamId].players = currentPlayers.filter((player: { player_id: any }) => player.player_id !== newPlayer.player_id);
             }
 
             return updatedTeams;

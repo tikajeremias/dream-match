@@ -11,9 +11,15 @@ export default function Team(props: { id: string }) {
 
     const [teams, setTeams] = useAtom(teamsAtom)
     const team = teams[props.id]
+    interface Team {
+        'team-id': string;
+        'team-name': string;
+        'players': any[] | null;
+    }
+    type Teams = Record<string, Team>;
 
     // State default de los equipos
-    const defaultTeams = {
+    const defaultTeams: Teams = {
         one: {
             'team-id': 'one',
             'team-name': 'Team One F.C',
@@ -25,10 +31,26 @@ export default function Team(props: { id: string }) {
             'players': null,
         },
     };
+    // const defaultTeams = {
+    //     one: {
+    //         'team-id': 'one',
+    //         'team-name': 'Team One F.C',
+    //         'players': null,
+    //     },
+    //     two: {
+    //         'team-id': 'two',
+    //         'team-name': 'Team Two F.C',
+    //         'players': null,
+    //     },
+    // };
 
     // Reset del team
     const resetTeam = (teamId: string) => {
-        setTeams((prevTeams) => {
+        setTeams((prevTeams: any) => {
+            if (!(teamId in defaultTeams)) {
+                console.error(`Team ID ${teamId} not found in defaultTeams.`);
+                return prevTeams; // Evita errores si el teamId no existe en defaultTeams
+            }
 
             // Clonar el estado anterior
             const updatedTeams = { ...prevTeams };
@@ -37,8 +59,16 @@ export default function Team(props: { id: string }) {
             updatedTeams[teamId] = { ...defaultTeams[teamId] };
 
             return updatedTeams;
+            // // Clonar el estado anterior
+            // const updatedTeams = { ...prevTeams };
+
+            // // Restablecer el equipo especificado a los valores por defecto
+            // updatedTeams[teamId] = { ...defaultTeams[teamId] };
+
+            // return updatedTeams;
         });
     };
+
 
     return (
         <div className="flex flex-col justify-start items-center h-[50%] w-full gap-2">

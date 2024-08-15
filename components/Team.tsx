@@ -59,7 +59,7 @@ export default function Team(props: { id: string }) {
             <div className='w-full h-[100%] overflow-y-scroll no-scrollbar'>
                 {team.players ? team.players.map((player: PlayerType
                 ) => (
-                    <div className='w-full flex flex-col justify-center items-center'>
+                    <div key={player.player_key} className='w-full flex flex-col justify-center items-center'>
                         <Player
                             player_key={player.player_key}
                             player_image={player.player_image}

@@ -77,7 +77,7 @@ export default function Page({ params }: { params: { id: string } }) {
                 <div className="w-full lg:h-full h-[70%] flex flex-col justify-start items-start no-scrollbar overflow-scroll">
                     {
                         team.players ? team.players.map((player: PlayerType) => (
-                            <div className="w-full h-auto lg:h-full"
+                            <div key={player.player_key} className="w-full h-auto lg:h-full"
                             onClick={() => handleSelectPlayer(params.id, player)}>
                                 <Player
                                     player_key={player.player_key}

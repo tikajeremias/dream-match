@@ -85,7 +85,7 @@ function Search(props: { teamId: string }) {
             <div className="flex flex-col gap-2 rounded-md lg:h-full overflow-scroll no-scrollbar">
                 {
                     data && (data.map((player: PlayerType) => (
-                        <div onClick={() => handleSelectPlayer(props.teamId, player)}>
+                        <div  key={player.player_key} onClick={() => handleSelectPlayer(props.teamId, player)}>
                             <Player
                                 player_key={player.player_key}
                                 player_image={player.player_image}

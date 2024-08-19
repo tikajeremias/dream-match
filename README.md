@@ -21,3 +21,8 @@
 - npm i
 - npm run dev
 - Abrir "http://localhost:3000" en tu navegador para ver el resultado.
+
+## Como ejecutar el contenedor de Docker
+
+- docker pull jeremiastika/dream-match:latest
+- docker run -p 3000:3000 jeremiastika/dream-match

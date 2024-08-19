@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export type PlayerType = {
     player_key: string;
     player_image: string;
@@ -10,7 +12,7 @@ function Player({ ...props }: PlayerType) {
 
             {props.player_image === '' ? (
                 <div className="w-8 h-8 bg-neutral-800 rounded-lg" />
-            ) : <img className="w-8 h-8 rounded-[50%]" src={props.player_image} />}
+            ) : <Image className="w-8 h-8 rounded-[50%]" src={props.player_image} alt={""} />}
 
             <p className='text-white'>{props.player_name}</p>
         </div>

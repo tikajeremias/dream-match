@@ -56,17 +56,19 @@ function Search(props: { teamId: string }) {
     const [data, setData] = useState<PlayerType[] | null>(null)
 
     async function getPlayers() {
-        if (inputValue === "") { handleOpen('Please type a player name!') }
+        if (inputValue === "") {
+            handleOpen('Please type a player name!')
+            return null;
+        }
         const res = await fetch(`/api/searchPlayer?name=${inputValue}`);
         const data = await res.json();
-        console.log(data)
         if (!data.error) {
             setData(data)
         } else {
             setData([])
         }
     }
-    
+
 
     return (
         <div className="w-full h-auto lg:h-full gap-2 flex flex-col overflow-scroll no-scrollbar">
@@ -85,7 +87,7 @@ function Search(props: { teamId: string }) {
             <div className="flex flex-col gap-2 rounded-md lg:h-full overflow-scroll no-scrollbar">
                 {
                     data && (data.map((player: PlayerType) => (
-                        <div  key={player.player_key} onClick={() => handleSelectPlayer(props.teamId, player)}>
+                        <div key={player.player_key} onClick={() => handleSelectPlayer(props.teamId, player)}>
                             <Player
                                 player_key={player.player_key}
                                 player_image={player.player_image}

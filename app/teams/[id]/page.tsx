@@ -16,7 +16,6 @@ export default function Page({ params }: { params: { id: string } }) {
         redirect('/')
     }
 
-
     const [teams, setTeams] = useAtom(teamsAtom)
     const team = teams[params.id]
 
@@ -47,9 +46,7 @@ export default function Page({ params }: { params: { id: string } }) {
             // Actualizar el array de players para el equipo especificado
             const currentPlayers = updatedTeams[teamId].players || [];
             const playerExists = currentPlayers.some((player: { player_id: any }) => player.player_id === newPlayer.player_id);
-            if (playerExists) {
-                updatedTeams[teamId].players = currentPlayers.filter((player: { player_id: any }) => player.player_id !== newPlayer.player_id);
-            }
+            if (playerExists) { updatedTeams[teamId].players = currentPlayers.filter((player: { player_id: any }) => player.player_id !== newPlayer.player_id); }
 
             return updatedTeams;
         });
@@ -67,7 +64,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
                 {/* Input de editar nombre */}
                 <div className="flex h-auto w-full bg-white gap-2 pr-2 justify-between rounded-md items-center">
-                    <input className={inputDisabled ? "w-full h-full bg-neutral-400 text-neutral-200 p-2" :"w-full h-full p-2"} disabled={inputDisabled} onChange={handleChange} type="text" value={teamName}></input>
+                    <input className={inputDisabled ? "w-full h-full bg-neutral-400 text-neutral-200 p-2" : "w-full h-full p-2"} disabled={inputDisabled} onChange={handleChange} type="text" value={teamName}></input>
                     <Button href="" label={inputDisabled ? "Edit" : "Save"}
                         variant={"secondary"}
                         onClick={handleSaveTeamName} />
@@ -78,7 +75,7 @@ export default function Page({ params }: { params: { id: string } }) {
                     {
                         team.players ? team.players.map((player: PlayerType) => (
                             <div key={player.player_key} className="w-full h-auto lg:h-full"
-                            onClick={() => handleSelectPlayer(params.id, player)}>
+                                onClick={() => handleSelectPlayer(params.id, player)}>
                                 <Player
                                     player_key={player.player_key}
                                     player_image={player.player_image}

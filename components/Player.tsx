@@ -12,7 +12,7 @@ function Player({ ...props }: PlayerType) {
 
             {props.player_image === '' ? (
                 <div className="w-8 h-8 bg-neutral-800 rounded-lg" />
-            ) : <Image className="w-8 h-8 rounded-[50%]" src={props.player_image} alt={""} />}
+            ) : <Image width={100} height={100} className="w-8 h-8 rounded-[50%]" src={props.player_image} alt={"Player image"} />}
 
             <p className='text-white'>{props.player_name}</p>
         </div>
